@@ -139,9 +139,9 @@ export default function Home() {
             <div className="flex items-center space-x-4">
               <Shield className="h-8 w-8 text-primary" />
               <div>
-                <h1 className="text-3xl font-bold">SIGA-iGOV</h1>
+                <h1 className="text-3xl font-bold">G-GRID</h1>
                 <p className="text-muted-foreground">
-                  State Interests and Governance Authority - Oversight Intelligence Platform
+                  Ghana-Gov Intelligence Grid - State Enterprise Oversight Platform
                 </p>
               </div>
             </div>

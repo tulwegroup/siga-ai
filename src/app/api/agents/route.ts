@@ -220,7 +220,7 @@ async function getAgentInsights(searchParams: URLSearchParams) {
       const zai = await ZAI.create();
       
       const prompts = {
-        INGESTION: `As a data ingestion specialist for Ghana's SIGA platform, analyze the current entity data and provide insights on data quality, completeness, and recommendations for improvement. 
+        INGESTION: `As a data ingestion specialist for Ghana's G-GRID platform, analyze the current entity data and provide insights on data quality, completeness, and recommendations for improvement. 
 
 Context: ${JSON.stringify(context)}
 
@@ -275,7 +275,7 @@ Keep your response concise but comprehensive, using clear headings and bullet po
           messages: [
             {
               role: 'system',
-              content: 'You are an expert AI assistant for the SIGA-iGOV platform, providing intelligent insights for Ghana\'s state enterprise oversight.'
+              content: 'You are an expert AI assistant for the G-GRID platform, providing intelligent insights for Ghana\'s state enterprise oversight.'
             },
             {
               role: 'user',

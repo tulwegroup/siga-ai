@@ -1,5 +1,5 @@
 // Comprehensive list of Ghanaian State-Owned Enterprises, Joint Ventures, and Other State Entities
-// Based on actual SIGA registry and public records
+// Based on actual G-GRID registry and public records
 
 export const GHANA_ENTITIES = [
   // STATE-OWNED ENTERPRISES (SOEs)

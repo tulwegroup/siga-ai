@@ -46,9 +46,9 @@ export interface AgentContribution {
 export const AGENT_TASKS: Record<string, AgentTask[]> = {
   INGESTION: [
     {
-      id: 'scrape-siga-website',
-      name: 'Scrape SIGA Website',
-      description: 'Extract entity data from SIGA official website',
+      id: 'scrape-ggrid-website',
+      name: 'Scrape G-GRID Website',
+      description: 'Extract entity data from G-GRID official website',
       category: 'Data Collection',
       estimatedDuration: 120,
       successRate: 95,

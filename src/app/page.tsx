@@ -9,7 +9,7 @@ import { AgentDashboard } from '@/components/agents/agent-dashboard';
 import { EntityTable } from '@/components/entities/entity-table';
 import { SoftwareRationalization } from '@/components/software/software-rationalization';
 import { DataCenterOptimization } from '@/components/datacenter/data-center-optimization';
-import { ComprehensiveProcurementDashboard } from '@/components/procurement/comprehensive-procurement-dashboard';
+import { EnhancedProcurementDashboard } from '@/components/procurement/enhanced-procurement-dashboard';
 import { 
   Building2, 
   TrendingUp, 
@@ -301,7 +301,7 @@ export default function Home() {
           </TabsContent>
 
           <TabsContent value="procurement" className="space-y-6">
-            <ComprehensiveProcurementDashboard />
+            <EnhancedProcurementDashboard />
           </TabsContent>
 
           <TabsContent value="risk" className="space-y-6">

@@ -570,15 +570,17 @@ enum LicenseStatus {
   RENEWAL_DUE
 }
 
-// Procurement Monitoring
+// Enhanced Procurement Monitoring with Value for Money Audit
 model ProcurementRecord {
   id               String   @id @default(cuid())
   entityId         String
   procurementId    String   @unique
+  ppaReference     String?  // PPA tracking number
   title            String
   description      String?
   category         ProcurementCategory
   procurementType  ProcurementType
+  procurementMethod ProcurementMethod
   value            Float
   currency         String   @default("GHS")
   
@@ -588,34 +590,89 @@ model ProcurementRecord {
   awardDate        DateTime?
   contractStartDate DateTime?
   contractEndDate  DateTime?
+  evaluationPeriod Int?     // Days from closing to award
   
   // Supplier Information
   supplier         String?
+  supplierId       String?  // Supplier registration number
   supplierCountry  String?
   isLocalSupplier  Boolean  @default(false)
+  supplierExperience Int?    // Years in business
+  supplierRating   Float?   // Supplier performance rating
   
-  // Evaluation
-  bidsReceived     Int?
-  evaluationCriteria String?
+  // Financial Details
+  bidAmount        Float?   // Winning bid amount
+  estimatedCost    Float?   // Original estimated cost
+  budgetAllocation Float?   // Approved budget allocation
   negotiationSavings Float?
+  costBreakdown    Json?    // Detailed cost breakdown
+  
+  // Evaluation Process
+  bidsReceived     Int?
+  qualifiedBids    Int?
+  evaluationCriteria Json?  // Scoring criteria and weights
+  evaluationScores Json?    // Detailed bid evaluation scores
+  evaluationCommittee String?
+  evaluationReport String?
+  
+  // Value for Money Assessment
+  vfmScore         Float?   // Overall VFM score (0-100)
+  economyScore     Float?   // Cost-effectiveness score
+  efficiencyScore  Float?   // Resource utilization score
+  effectivenessScore Float? // Outcome achievement score
+  equityScore      Float?   // Fairness and inclusion score
   
   // Risk & Compliance
   riskLevel        ProcurementRisk @default(LOW)
   complianceStatus String?
   approvalStatus   ApprovalStatus @default(PENDING)
+  ppaApproval      Boolean  @default(false)
+  ppaApprovalDate  DateTime?
   
-  // Duplicate Detection
+  // Market Analysis
+  marketPriceBenchmark Float? // Market price comparison
+  priceCompetitiveness Float?  // Price vs market analysis
+  alternativeSolutions Json?   // Alternative procurement options
+  
+  // Duplicate Detection & Consolidation
   similarItems     Json?    // AI-detected similar procurements
   consolidationOpportunity Boolean @default(false)
   potentialSavings Float?
+  sharedServicesPotential Boolean @default(false)
   
-  // Monitoring
+  // Contract Management
+  contractTerms    Json?    // Key contract terms
+  deliverables     Json?    // Expected deliverables
+  penalties        Json?    // Delay/quality penalties
+  performanceGuarantee Float?
+  advancePayment   Float?
+  paymentTerms     String?
+  
+  // Monitoring & Performance
   deliveryStatus   String?
   paymentStatus    String?
   performanceRating Int?     // 1-5
+  completionRate   Float?   // Percentage complete
+  qualityMetrics   Json?    // Quality assessment data
   
+  // Audit Trail
+  auditFindings    Json?    // Audit observations
+  auditRecommendations Json?
+  auditStatus      AuditStatus @default(DRAFT)
+  lastAuditDate    DateTime?
+  
+  // Value for Money Analysis
+  vfmAnalysis       Json?    // Detailed VFM analysis
+  savingsRealized  Float?   // Actual savings achieved
+  roi              Float?   // Return on investment
+  socialBenefits   Json?    // Social impact assessment
+  environmentalBenefits Json? // Environmental impact
+  
+  // Documentation
   contractUrl      String?
   tenderUrl        String?
+  ppaPublicationUrl String?
+  evaluationDocumentsUrl String?
   notes            String?
   
   createdAt        DateTime @default(now())
@@ -651,6 +708,17 @@ enum ProcurementType {
   SOLE_SOURCE
   EMERGENCY
   FRAMEWORK_AGREEMENT
+}
+
+enum ProcurementMethod {
+  COMPETITIVE_TENDERING
+  SINGLE_SOURCE
+  RESTRICTED_TENDERING
+  DIRECT_PROCUREMENT
+  EMERGENCY_PROCUREMENT
+  FRAMEWORK_AGREEMENT
+  E_PROCUREMENT
+  TWO_STAGE_TENDERING
 }
 
 enum ProcurementRisk {
